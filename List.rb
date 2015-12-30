@@ -18,7 +18,7 @@ class List
 	end
 
 	def get(index)
-		# add "index out of range errors
+		
 		if head_node
 			current_node = head_node
 			index.times {current_node = current_node.next_node}
@@ -58,22 +58,71 @@ class List
 
 	def set(index, value)
 		if not head_node
-			head_node = Node.new(nil)
+			self.head_node = Node.new(nil)
 		end
-		current_node = head_node
-		index.times do 
+		current_node = self.head_node
+		(index).times do 
 			if current_node.next_node
 				current_node = current_node.next_node
 			else
 				current_node.next_node = Node.new(nil)
 				current_node = current_node.next_node
 			end
-
 		end
-		current_node = Node.new(value)
+		current_node.value = value
 	end
 
+	def swap(i,j)
+		#go get the ith value
+		current_node = head_node
+
+		i.times do 
+			current_node = current_node.next_node
+		end
+		i_value = current_node.value
+
+		#go get the jth value
+		current_node = head_node
+
+		j.times do 
+			current_node = current_node.next_node
+		end
+		j_value = current_node.value
+		#swap em
+		set(i, j_value)
+		set(j, i_value)
+
+	end
+
+	def bubble_sort
+		swapped = true
+		while swapped
+			swapped = false
+			current_node = head_node
+			(length - 1).times do |i|
+				if current_node.value > current_node.next_node.value
+					swap(i, i+1)
+					swapped = true
+				end
+				current_node = current_node.next_node
+			end
+		end
+	end
+
+
+	def empty? # this might have some weird edge cases
+		#if get calls get it will put in nil nodes that should iterate length
+		if length == 0
+			true
+		else
+			false
+		end
+
+	end
+
+
 end
+
 
 class Node
 	attr_accessor :value
@@ -82,4 +131,32 @@ class Node
 		@value = value
 	end
 end
+
+
+mylist = List.new
+
+
+mylist.append(96)
+mylist.append(10)
+mylist.append(34)
+mylist.append(65)
+
+mylist.bubble_sort
+
+
+puts mylist.get(0)
+puts mylist.get(1)
+puts mylist.get(2)
+puts mylist.get(3)
+
+# mylist.swap(0,2)
+# puts "-------"
+
+# puts mylist.get(0)
+# puts mylist.get(1)
+# puts mylist.get(2)
+
+
+
+
 
