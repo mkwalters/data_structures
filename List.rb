@@ -94,7 +94,7 @@ class List
 
 	end
 
-	def bubble_sort
+	def bubble_sort!
 		swapped = true
 		while swapped
 			swapped = false
@@ -136,18 +136,18 @@ end
 mylist = List.new
 
 
-mylist.append(96)
-mylist.append(10)
-mylist.append(34)
-mylist.append(65)
 
-mylist.bubble_sort
+10.times do 
+	mylist.append(rand(100))
+end
 
 
-puts mylist.get(0)
-puts mylist.get(1)
-puts mylist.get(2)
-puts mylist.get(3)
+mylist.bubble_sort!
+
+
+10.times {|i| puts mylist.get(i)}
+
+
 
 # mylist.swap(0,2)
 # puts "-------"
