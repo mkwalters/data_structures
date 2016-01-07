@@ -43,14 +43,14 @@ class Tree
     current_node = root
     while true
       if current_node.value == value
-        return "value found"
+        return true
       end
 
       if value > current_node.value #goin right
         if current_node.right
           current_node = current_node.right
         else
-          return "value not found"
+          return false
         end
       end
 
@@ -58,7 +58,7 @@ class Tree
         if current_node.left
           current_node = current_node.left
         else
-          return "value not found"
+          return false
         end
       end
 
