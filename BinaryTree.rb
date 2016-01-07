@@ -36,6 +36,33 @@ class Tree
         end
       end
     end
+
+  end
+
+  def search(value) #return true if tree contains value and false if it does not
+    current_node = root
+    while true
+      if current_node.value == value
+        return "value found"
+      end
+
+      if value > current_node.value #goin right
+        if current_node.right
+          current_node = current_node.right
+        else
+          return "value not found"
+        end
+      end
+
+      if value < current_node.value #goin left
+        if current_node.left
+          current_node = current_node.left
+        else
+          return "value not found"
+        end
+      end
+
+    end
   end
 
 end
@@ -48,7 +75,14 @@ tree.append(75)
 tree.append(40)
 tree.append(30)
 
-puts tree.root.right.right.value
+# puts tree.root.right.right.value
 
-puts tree.root.left.value
-puts tree.root.left.left.value
+# puts tree.root.left.value
+# puts tree.root.left.left.value
+
+puts tree.search(75)
+puts tree.search(100)
+
+
+
+
